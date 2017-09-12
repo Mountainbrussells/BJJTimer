@@ -18,6 +18,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var countdownView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var warningSwitch: UISwitch!
 
     var restTime:Int?
     var roundTime:Int?
@@ -62,6 +63,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
         }
     }
     
+    // MARK: - TimerController Delegate
     func timeChanged() {
         countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
         if timerController?.seconds == 0 && timerRunning == false {
@@ -84,7 +86,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
                 // soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(BJJTVRoundTimerViewController.shutOfSound), userInfo: nil, repeats: true)
             }
             startRoundTimer()
-        } else if timerController?.seconds == 30 && timerSwitch == 1 {
+        } else if timerController?.seconds == 30 && timerSwitch == 1  && warningSwitch.isOn {
             countdownLabel.backgroundColor = UIColor.red
             audioPlayer.prepareToPlay()
             audioPlayer.play()

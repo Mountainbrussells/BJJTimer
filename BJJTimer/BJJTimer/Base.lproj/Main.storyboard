@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EFQ-k9-1FC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EFQ-k9-1FC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,6 +61,12 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="58"/>
                                         </variation>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="30 Second Warning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0c-16-7Hg">
+                                        <rect key="frame" x="40" y="367" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="wkM-Fw-JSE">
                                         <rect key="frame" x="38" y="283.5" width="267" height="31"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,12 +83,17 @@
                                             <action selector="restTimeSliderMoved:" destination="EFQ-k9-1FC" eventType="valueChanged" id="vXB-cK-Vmc"/>
                                         </connections>
                                     </slider>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjb-qY-mFI">
+                                        <rect key="frame" x="254" y="362" width="51" height="31"/>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="sMY-sC-pv4" firstAttribute="top" secondItem="X8f-4Z-knC" secondAttribute="bottom" constant="16" id="2Gz-yZ-7BV">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
                                     </constraint>
+                                    <constraint firstItem="q0c-16-7Hg" firstAttribute="leading" secondItem="wkM-Fw-JSE" secondAttribute="leading" id="2it-vj-hVX"/>
+                                    <constraint firstItem="mjb-qY-mFI" firstAttribute="centerY" secondItem="q0c-16-7Hg" secondAttribute="centerY" id="4WV-1m-B0o"/>
                                     <constraint firstItem="sMY-sC-pv4" firstAttribute="centerX" secondItem="Yg6-uc-MhA" secondAttribute="centerX" id="8op-eG-FXP"/>
                                     <constraint firstItem="lGG-fA-dET" firstAttribute="top" secondItem="cWD-uX-HHx" secondAttribute="bottom" constant="16" id="B7m-Ko-y0S">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
@@ -101,6 +112,8 @@
                                     <constraint firstItem="X8f-4Z-knC" firstAttribute="top" secondItem="lGG-fA-dET" secondAttribute="bottom" constant="16" id="fEx-Hl-S5H">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
                                     </constraint>
+                                    <constraint firstItem="mjb-qY-mFI" firstAttribute="trailing" secondItem="wkM-Fw-JSE" secondAttribute="trailing" id="ghW-Gh-aAT"/>
+                                    <constraint firstItem="q0c-16-7Hg" firstAttribute="top" secondItem="wkM-Fw-JSE" secondAttribute="bottom" constant="53.5" id="k6v-LT-ehi"/>
                                     <constraint firstItem="DVL-ao-UU0" firstAttribute="top" secondItem="sMY-sC-pv4" secondAttribute="bottom" constant="16" id="lrK-rx-aLu">
                                         <variation key="heightClass=regular-widthClass=regular" constant="24"/>
                                     </constraint>
@@ -173,6 +186,7 @@
                         <outlet property="roundTimerLabel" destination="DVL-ao-UU0" id="S2q-WI-32Q"/>
                         <outlet property="roundTimerSlider" destination="wkM-Fw-JSE" id="kex-Ro-CeV"/>
                         <outlet property="startButton" destination="fZH-vS-fNt" id="flH-TR-p3B"/>
+                        <outlet property="warningSwitch" destination="mjb-qY-mFI" id="83t-nc-ZP6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ma-s9-1nD" userLabel="First Responder" sceneMemberID="firstResponder"/>
