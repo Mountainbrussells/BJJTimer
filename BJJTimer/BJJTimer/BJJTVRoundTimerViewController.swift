@@ -24,7 +24,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     var roundTime:Int?
     var timerRunning:Bool?
     var playSound:Int?
-    var timerSwitch = 0
+    var isSparring = false
     var timerController:BJJTVTimerController?
     var audioPlayer = AVAudioPlayer()
     var soundTimer:Timer?
@@ -67,10 +67,9 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     func timeChanged() {
         countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
         if timerController?.seconds == 0 && timerRunning == false {
-            timerRunning = true
             startRoundTimer()
         } else if timerController?.seconds == 0 {
-            if timerSwitch == 1 {
+            if isSparring {
                 do
                 {
                     let audioPath = Bundle.main.path(forResource: "bell", ofType: ".mp3")
@@ -82,11 +81,9 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
                 }
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
-                // playSound = 0
-                // soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(BJJTVRoundTimerViewController.shutOfSound), userInfo: nil, repeats: true)
             }
             startRoundTimer()
-        } else if timerController?.seconds == 30 && timerSwitch == 1  && warningSwitch.isOn {
+        } else if timerController?.seconds == 30 && isSparring && warningSwitch.isOn {
             countdownLabel.backgroundColor = UIColor.red
             audioPlayer.prepareToPlay()
             audioPlayer.play()
@@ -101,47 +98,45 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     }
     
     func startRoundTimer() {
-        if timerSwitch == 0 {
-            // round time
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-            countdownLabel.backgroundColor = UIColor.yellow
-            countdownLabel.textColor = UIColor.black
-            timerController?.stopTime()
-            timerController?.seconds = Int(roundTimerSlider.value) * 60
+        timerRunning = true
+        if !isSparring {
+            startSparring()
+        } else {
+            startRest()
+        }
+    }
+    
+    func startSparring() {
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        countdownLabel.backgroundColor = UIColor.yellow
+        countdownLabel.textColor = UIColor.black
+        timerController?.stopTime()
+        timerController?.seconds = Int(roundTimerSlider.value) * 60
+        countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
+        timerController?.startTimer()
+        isSparring = true
+    }
+    
+    func startRest() {
+        timerController?.stopTime()
+        timerController?.seconds = Int(restTimerSlider.value) * 60
+        if timerController?.seconds == 0  {
+            isSparring = false
+            startRoundTimer()
+        } else {
+            countdownLabel.backgroundColor = UIColor.green
+            countdownLabel.textColor = UIColor.darkGray
             countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
             timerController?.startTimer()
-            timerSwitch = 1
-        } else {
-            // rest time
-            timerController?.stopTime()
-            timerController?.seconds = Int(restTimerSlider.value) * 60
-            if timerController?.seconds == 0  {
-                timerSwitch = 0
-                startRoundTimer()
-            } else {
-                countdownLabel.backgroundColor = UIColor.green
-                countdownLabel.textColor = UIColor.darkGray
-                countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
-                timerController?.startTimer()
-                timerSwitch = 0
-            }
+            isSparring = false
         }
     }
     
     func stopTimer() {
         countdownView.isHidden = true
         timerController?.stopTime()
-        timerSwitch = 0
-    }
-    
-    func shutOfSound() {
-        playSound = playSound! + 1
-        if playSound == 5 {
-            audioPlayer.pause()
-            soundTimer?.invalidate()
-        }
-        
+        isSparring = false
     }
     
     func stringFromTimeInterval(interval: TimeInterval) -> String {
