@@ -20,25 +20,25 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var warningSwitch: UISwitch!
 
-    var restTime:Int?
-    var roundTime:Int?
-    var timerRunning:Bool?
+    var restTime = 2
+    var roundTime = 10
+    var timerRunning = false
     var playSound:Int?
     var isSparring = false
     var timerController:BJJTVTimerController?
     var audioPlayer = AVAudioPlayer()
     var soundTimer:Timer?
+    var goGreen = UIColor.init(colorLiteralRed: 45.0/255.0, green: 138.0/255.0, blue: 32.0/255.0, alpha: 1.0)
+    var stopRed = UIColor.red
     
     override func viewDidLoad() {
         super.viewDidLoad()
         countdownView.isHidden = true
         timerController = BJJTVTimerController()
         timerController?.delegate = self
-        restTime = 2
-        roundTime = 10
-        timerRunning = false
         // preferredInterfaceOrientationForPresentation = .portrait
         UIApplication.shared.isIdleTimerDisabled = true
+        warningSwitch.onTintColor = goGreen
         
         do
         {
@@ -66,19 +66,11 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     // MARK: - TimerController Delegate
     func timeChanged() {
         countdownLabel.text = stringFromTimeInterval(interval: Double((timerController?.seconds)!))
-        if timerController?.seconds == 0 && timerRunning == false {
+        if timerController?.seconds == 0 && !timerRunning {
             startRoundTimer()
         } else if timerController?.seconds == 0 {
             if isSparring {
-                do
-                {
-                    let audioPath = Bundle.main.path(forResource: "bell", ofType: ".mp3")
-                    try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
-                }
-                catch
-                {
-                    //ERROR
-                }
+                
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
             }
@@ -148,26 +140,26 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     
     @IBAction func restTimeSliderMoved(_ sender: UISlider) {
         restTime = Int(sender.value)
-        restTimerlabel.text = String(describing: restTime!)
+        restTimerlabel.text = String(describing: restTime)
     }
     
     @IBAction func roundTimeSliderMoved(_ sender: UISlider) {
         roundTime = Int(sender.value)
-        roundTimerLabel.text = String(describing: roundTime!)
+        roundTimerLabel.text = String(describing: roundTime)
     }
     @IBAction func startStopButtonPressed(_ sender: UIButton) {
         if startButton.currentTitle == "GO" {
-            // TODO: Fade in countdownView
             countdownLabel.backgroundColor = UIColor.black
             countdownLabel.textColor = UIColor.white
             countdownView.isHidden = false
             
             startInitialTimer()
             startButton.setTitle("STOP", for: .normal)
-            startButton.setTitleColor(UIColor.red, for: .normal)
+            startButton.setTitleColor(stopRed, for: .normal)
         } else {
+            audioPlayer.stop()
             startButton.setTitle("GO", for: .normal)
-            startButton.setTitleColor(UIColor.init(colorLiteralRed: 45.0/255.0, green: 138.0/255.0, blue: 32.0/255.0, alpha: 1.0), for: .normal)
+            startButton.setTitleColor(goGreen, for: .normal)
             stopTimer()
         }
     }
