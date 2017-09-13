@@ -70,13 +70,14 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
             startRoundTimer()
         } else if timerController?.seconds == 0 {
             if isSparring {
-                
+                audioPlayer.numberOfLoops = 1
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
             }
             startRoundTimer()
-        } else if timerController?.seconds == 30 && isSparring && warningSwitch.isOn {
+        } else if timerController?.seconds == 20 && isSparring && warningSwitch.isOn {
             countdownLabel.backgroundColor = UIColor.red
+            audioPlayer.numberOfLoops = 0
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         } 
@@ -99,6 +100,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     }
     
     func startSparring() {
+        audioPlayer.numberOfLoops = 1
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         countdownLabel.backgroundColor = UIColor.yellow
