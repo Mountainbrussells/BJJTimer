@@ -17,6 +17,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     @IBOutlet weak var roundTimerSlider: UISlider!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var countdownView: UIView!
+    @IBOutlet weak var controllView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var warningSwitch: UISwitch!
 
@@ -128,6 +129,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     }
     
     func stopTimer() {
+        controllView.isHidden = false
         countdownView.isHidden = true
         timerController?.stopTime()
         isSparring = false
@@ -153,6 +155,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
         if startButton.currentTitle == "GO" {
             countdownLabel.backgroundColor = UIColor.black
             countdownLabel.textColor = UIColor.white
+            controllView.isHidden = true
             countdownView.isHidden = false
             
             startInitialTimer()
