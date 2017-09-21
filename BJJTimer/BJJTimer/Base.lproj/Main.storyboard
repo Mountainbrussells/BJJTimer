@@ -44,7 +44,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yg6-uc-MhA">
-                                <rect key="frame" x="16" y="101" width="343" height="422"/>
+                                <rect key="frame" x="16" y="101" width="343" height="492"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rest Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWD-uX-HHx">
                                         <rect key="frame" x="133" y="17" width="76.5" height="21"/>
@@ -184,7 +184,7 @@
                             <constraint firstItem="q1D-IO-a57" firstAttribute="leading" secondItem="DT5-KV-lWT" secondAttribute="leading" id="2IL-eq-VIR"/>
                             <constraint firstItem="q1D-IO-a57" firstAttribute="top" secondItem="MMv-xN-C3J" secondAttribute="bottom" id="R3S-pz-wnx"/>
                             <constraint firstAttribute="trailing" secondItem="q1D-IO-a57" secondAttribute="trailing" id="WdN-VW-lMJ"/>
-                            <constraint firstItem="fZH-vS-fNt" firstAttribute="top" secondItem="Yg6-uc-MhA" secondAttribute="bottom" constant="78" id="Yua-uJ-zMr">
+                            <constraint firstItem="fZH-vS-fNt" firstAttribute="top" secondItem="Yg6-uc-MhA" secondAttribute="bottom" constant="8" id="Yua-uJ-zMr">
                                 <variation key="heightClass=compact" constant="4"/>
                             </constraint>
                             <constraint firstItem="fZH-vS-fNt" firstAttribute="centerX" secondItem="DT5-KV-lWT" secondAttribute="centerX" id="apg-43-yp0"/>
