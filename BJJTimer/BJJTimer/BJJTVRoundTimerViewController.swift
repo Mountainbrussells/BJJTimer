@@ -28,6 +28,7 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
     var isSparring = false
     var timerController:BJJTVTimerController?
     var audioPlayer = AVAudioPlayer()
+    var audioPlayer2 = AVAudioPlayer()
     var soundTimer:Timer?
     var goGreen = UIColor.init(colorLiteralRed: 45.0/255.0, green: 138.0/255.0, blue: 32.0/255.0, alpha: 1.0)
     var stopRed = UIColor.red
@@ -41,10 +42,24 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
         UIApplication.shared.isIdleTimerDisabled = true
         warningSwitch.onTintColor = goGreen
         
+        try? AVAudioSession.sharedInstance().setActive(true)
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
+        
         do
         {
             let audioPath = Bundle.main.path(forResource: "bell", ofType: ".mp3")
             try audioPlayer = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
+            
+        }
+        catch
+        {
+            //ERROR
+        }
+        do
+        {
+            let audioPath = Bundle.main.path(forResource: "beep", ofType: ".mp3")
+            try audioPlayer2 = AVAudioPlayer(contentsOf: URL(fileURLWithPath: audioPath!))
+            
         }
         catch
         {
@@ -78,9 +93,9 @@ class BJJTVRoundTimerViewController: UIViewController, BJJTVTimerControllerDeleg
             startRoundTimer()
         } else if timerController?.seconds == 20 && isSparring && warningSwitch.isOn {
             countdownLabel.backgroundColor = UIColor.red
-            audioPlayer.numberOfLoops = 0
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
+            audioPlayer2.numberOfLoops = 2
+            audioPlayer2.prepareToPlay()
+            audioPlayer2.play()
         } 
     }
     

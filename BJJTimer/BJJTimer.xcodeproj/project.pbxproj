@@ -14,6 +14,7 @@
 		C9346D081EF194CA00601ECC /* BJJTVRoundTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9346D071EF194CA00601ECC /* BJJTVRoundTimerViewController.swift */; };
 		C9346D0A1EF194E000601ECC /* BJJTVTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9346D091EF194E000601ECC /* BJJTVTimerController.swift */; };
 		C9346D0C1EF1967400601ECC /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9346D0B1EF1967300601ECC /* bell.mp3 */; };
+		C977FDA41F9288BD005F82D2 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C977FDA31F928811005F82D2 /* beep.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C9346D071EF194CA00601ECC /* BJJTVRoundTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BJJTVRoundTimerViewController.swift; sourceTree = "<group>"; };
 		C9346D091EF194E000601ECC /* BJJTVTimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BJJTVTimerController.swift; sourceTree = "<group>"; };
 		C9346D0B1EF1967300601ECC /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
+		C977FDA31F928811005F82D2 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				C9346D071EF194CA00601ECC /* BJJTVRoundTimerViewController.swift */,
 				C9346D091EF194E000601ECC /* BJJTVTimerController.swift */,
 				C9346D0B1EF1967300601ECC /* bell.mp3 */,
+				C977FDA31F928811005F82D2 /* beep.mp3 */,
 				C9346CF91EF1948300601ECC /* Main.storyboard */,
 				C9346CFC1EF1948300601ECC /* Assets.xcassets */,
 				C9346CFE1EF1948300601ECC /* LaunchScreen.storyboard */,
@@ -103,7 +106,7 @@
 					C9346CF11EF1948300601ECC = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = GUY34L2LLG;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -131,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9346D001EF1948300601ECC /* LaunchScreen.storyboard in Resources */,
+				C977FDA41F9288BD005F82D2 /* beep.mp3 in Resources */,
 				C9346D0C1EF1967400601ECC /* bell.mp3 in Resources */,
 				C9346CFD1EF1948300601ECC /* Assets.xcassets in Resources */,
 				C9346CFB1EF1948300601ECC /* Main.storyboard in Resources */,
@@ -271,12 +275,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GUY34L2LLG;
 				INFOPLIST_FILE = BJJTimer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.benrussell.BJJTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "10ab6345-3c91-46f5-8a71-89128dfc8251";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.benrussell.BJJTimer";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -285,12 +293,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GUY34L2LLG;
 				INFOPLIST_FILE = BJJTimer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.benrussell.BJJTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "10ab6345-3c91-46f5-8a71-89128dfc8251";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.benrussell.BJJTimer";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
